@@ -21,8 +21,9 @@ public class ShoppingListServlet extends HttpServlet {
         String action = request.getParameter("action");
         
         if (action != null && action.equals("logout")){
-            session.removeAttribute("username");
-            session.removeAttribute("shoppingList");
+//            session.removeAttribute("username");
+//            session.removeAttribute("shoppingList");
+            session.invalidate();
             response.sendRedirect("ShoppingList");
         }
         else if (session.getAttribute("username") == null){
@@ -55,7 +56,6 @@ public class ShoppingListServlet extends HttpServlet {
                     }
                     session.setAttribute("shoppingList", shoppingList);
                 }
-                
             }
             else if (action.equals("delete")){
                 ArrayList<String> shoppingList = (ArrayList<String>)session.getAttribute("shoppingList");
